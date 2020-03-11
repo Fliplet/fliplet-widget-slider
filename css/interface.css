@@ -69,13 +69,11 @@ body {
 
 .panel {
   opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0) scale(1);
   -webkit-transition: opacity 100ms linear, -webkit-transform 100ms linear;
 }
 
 .panel.focus {
   opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0) scale(1.03);
 }
 
 .panel-group .panel {
@@ -307,4 +305,16 @@ textarea.form-control {
 
 .thumb-holder .image-remove {
   margin-left: 0;
+}
+
+/*styles for Internet Explorer
+do not remove*/
+@media screen and (-ms-high-contrast: none) {
+  .panel {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .panel.focus {
+    transform: translate3d(0, 0, 0) scale(1.03);
+  }
 }
