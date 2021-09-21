@@ -25,7 +25,7 @@ this["Fliplet"]["Widget"]["Templates"]["template.slide"] = Handlebars.template({
 
   return container.escapeExpression(((helper = (helper = helpers.linkLabel || (depth0 != null ? depth0.linkLabel : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"linkLabel","hash":{},"data":data}) : helper)));
 },"8":function(container,depth0,helpers,partials,data) {
-    return "Continue";
+    return container.escapeExpression((helpers.T || (depth0 && depth0.T) || helpers.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),"widget.slider.dataSource.continue",{"name":"T","hash":{},"data":data}));
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
