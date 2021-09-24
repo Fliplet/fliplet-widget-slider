@@ -2,51 +2,8 @@
     "widgets": {
         "slider": {
             "dataSource": {
-                "header": "Configure your onboarding slider 1",
-                "tabList": {
-                    "slides": "Slides",
-                    "sliderOptions": "Slider options"
-                },
-                "panelBody": {
-                    "topImage": "Top image",
-                    "imageRemove": "Remove Image",
-                    "title": "Title",
-                    "description": "Description",
-                    "button": "Button",
-                    "helpBlock": "The button will appear at the bottom and can be used to direct the user to a different screen.",
-                    "buttonLabel": "Button label"
-                },
-                "panelsEmpty": {
-                    "create": "<strong>Create as many slides as you want</strong><br>Click the button below to get started"
-                },
-                "controlsClearfix": {
-                    "newListItem": "Add new slide",
-                    "expandItems": "Expand/Collapse All"
-                },
-                "controlsSticky": {
-                    "newListItem": "Add new slide",
-                    "expandItems": "Expand/Collapse All"
-                },
-                "sliderOptions": {
-                    "title": "Here you can configure some extra optional settings of the slider.",
-                    "enableAnimation": "Do you want to animate the content of each slide?",
-                    "helpBlock": "When moving from one slide to another, the content will have a small animation.",
-                    "animationYes": "Yes",
-                    "animationNo": "No",
-                    "enableSkip": "Do you want to configure a <em>Skip</em> button?",
-                    "skipYes": "Yes",
-                    "skipNo": "No"
-                },
-                "panelDefaultContent": {
-                    "topImage": "Top image",
-                    "addImage": "Add Image",
-                    "imageRemove": "Remove Image",
-                    "title": "Title",
-                    "description": "Description",
-                    "button": "Button",
-                    "helpBlock": "The button will appear at the bottom and can be used to direct the user to a different screen.",
-                    "buttonLabel":"Button label"
-                }
+                "skip": "Skip",
+                "continue": "Continue"
             }
         }
     }
