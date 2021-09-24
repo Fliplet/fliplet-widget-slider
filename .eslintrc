@@ -1,3 +1,8 @@
 {
-  "extends": "eslint-config-fliplet"
+  "extends": "eslint-config-fliplet",
+  "globals": {
+    "TD": "readonly",
+    "TN": "readonly",
+    "T": "readonly"
+  }
 }
