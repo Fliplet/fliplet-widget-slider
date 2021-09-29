@@ -1,11 +1,9 @@
 {
     "widgets": {
         "slider": {
-            "dataSource": {
-                "actions": {
-                    "skip": "Skip",
-                    "continue": "Continue"
-                }
+            "actions": {
+                "skip": "Skip",
+                "continue": "Continue"
             }
         }
     }
