@@ -1,10 +1,10 @@
 {
-    "widgets": {
-        "slider": {
-            "actions": {
-                "skip": "Skip",
-                "continue": "Continue"
-            }
-        }
+  "widgets": {
+    "slider": {
+      "actions": {
+        "skip": "Skip",
+        "continue": "Continue"
+      }
     }
+  }
 }
