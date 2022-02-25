@@ -97,7 +97,7 @@
       $container.find('.btn[data-slide-button-id]').click(function(event) {
         event.preventDefault();
 
-        var itemData = _.find(data.items, {id: $(this).data('slide-button-id')});
+        var itemData = _.find(data.items, { id: $(this).data('slide-button-id') });
 
         if (_.get(itemData, 'linkAction') && !_.isEmpty(itemData.linkAction)) {
           Fliplet.Navigate.to(itemData.linkAction);
@@ -105,7 +105,7 @@
       });
     }
 
-    // Main fanction to update and show slides
+    // Main function to update and show slides
     function updateSlide(data, widgetId, activeSlide) {
       // When we open interface we have 2 data-slider-id elements that's why we take only first of them.
       var $slidesInDom = $('[data-slider-id=' + widgetId + ']:eq(0)').find('.swiper-container [data-slider-id]');
@@ -114,10 +114,13 @@
       if (!globalSwiper[widgetId] || !data.length || deletedAllSlides) {
         Fliplet.Studio.emit('reload-widget-instance', widgetId);
         deletedAllSlides = !data.length;
+
         return;
       }
 
-      var currentSlide = !activeSlide ? activeSlide : globalSwiper[widgetId].activeIndex;
+      var currentSlide = typeof activeSlide !== 'undefined'
+        ? activeSlide
+        : globalSwiper[widgetId].activeIndex;
 
       if ($slidesInDom.length === data.length) {
         if (hasArrayChangedOrder($slidesInDom, data)) {
@@ -133,6 +136,7 @@
           if (!data[index] || element.dataset.sliderId !== data[index].id) {
             globalSwiper[widgetId].removeSlide(index);
             deletedPosition = index;
+
             return false;
           }
         });
@@ -153,7 +157,7 @@
       globalSwiper[widgetId].slideTo(currentSlide, 500, false);
       globalSwiper[widgetId].updateAutoHeight(0);
 
-      if (data[currentSlide].imageConf) {
+      if (data[currentSlide] && data[currentSlide].imageConf) {
         // This is needed to update slide size when we adding an image
         // Wait until image is loaded and then update height one more time
         var imageLoad = new Promise(function(resolve) {
@@ -162,6 +166,7 @@
           image.onload = function() {
             resolve();
           };
+
           image.src = data[currentSlide].imageConf.url;
         });
 
@@ -178,6 +183,7 @@
 
       if (eventDetail.event === 'reload-widget-instance') {
         debounceLoad();
+
         return;
       }
 
