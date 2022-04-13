@@ -18,6 +18,12 @@ var FlSlider = (function() {
 
   var $accordionContainer = $('#accordion');
 
+  $accordionContainer.find('.thumb-image').each(function() {
+    var $img = $(this).find('img');
+
+    $img.attr('src', Fliplet.Media.authenticate($img.attr('src')));
+  })
+
 
   function makeid(length) {
     var text = '';
@@ -285,7 +291,7 @@ var FlSlider = (function() {
       imageProvider.then(function(data) {
         if (data.data) {
           item.imageConf = data.data[0];
-          $('[data-id="' + item.id + '"] .thumb-image img').attr('src', data.data[0].thumbnail);
+          $('[data-id="' + item.id + '"] .thumb-image img').attr('src', Fliplet.Media.authenticate(data.data[0].thumbnail));
           save(editIndex);
         }
         imageProvider = null;
