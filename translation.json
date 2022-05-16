@@ -1,0 +1,10 @@
+{
+  "widgets": {
+    "slider": {
+      "actions": {
+        "skip": "Skip",
+        "continue": "Continue"
+      }
+    }
+  }
+}
