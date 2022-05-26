@@ -73,14 +73,12 @@ var FlSlider = (function() {
         placeholder: 'panel panel-default placeholder tile',
         cursor: '-webkit-grabbing; -moz-grabbing;',
         axis: 'y',
+        opacity: 0.7,
         start: function(event, ui) {
           $('.panel-collapse.in').collapse('hide');
-          ui.item.addClass('focus').css('height', ui.helper.find('.panel-heading').outerHeight() + 2);
-          $('.panel').not(ui.item).addClass('faded');
+          ui.item.css('height', ui.helper.find('.panel-heading').outerHeight() + 2);
         },
         stop: function(event, ui) {
-          ui.item.removeClass('focus');
-
           var sortedIds = $('.panel-group').sortable('toArray', {
             attribute: 'data-id'
           });
@@ -88,7 +86,6 @@ var FlSlider = (function() {
             return sortedIds.indexOf(item.id);
           });
           save();
-          $('.panel').not(ui.item).removeClass('faded');
         },
         sort: function() {
           $('.panel-group').sortable('refresh');
@@ -422,6 +419,11 @@ var FlSlider = (function() {
 
           _this.checkPanelLength();
           save();
+        })
+        .on('click', function(event) {
+          if (dragging) {
+            event.stopPropagation();
+          }
         })
         .on('show.bs.collapse', '.panel-collapse', function() {
           // Get item ID / Get provider / Get item
