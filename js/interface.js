@@ -39,6 +39,9 @@ var FlSlider = (function() {
   // this reference
   var _this;
 
+  // Indicate dragging state
+  var dragging = false;
+
   // Constructor
   function FlSlider(data) {
     _this = this;
@@ -75,6 +78,8 @@ var FlSlider = (function() {
         axis: 'y',
         opacity: 0.7,
         start: function(event, ui) {
+          dragging = true;
+
           $('.panel-collapse.in').collapse('hide');
           ui.item.css('height', ui.helper.find('.panel-heading').outerHeight() + 2);
         },
@@ -85,6 +90,9 @@ var FlSlider = (function() {
           data.items = _.sortBy(data.items, function(item) {
             return sortedIds.indexOf(item.id);
           });
+
+          dragging = false;
+
           save();
         },
         sort: function() {
