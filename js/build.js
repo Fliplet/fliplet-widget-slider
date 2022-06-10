@@ -22,7 +22,9 @@
     var $container = $(this);
     var deletedAllSlides = false;
 
-    $(this).translate();
+    Fliplet().then(function() {
+      $container.translate();
+    });
 
     function authenticateImages(onImageLoad) {
       return Fliplet().then(function() {
