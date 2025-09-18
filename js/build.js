@@ -6,14 +6,14 @@
   function reDrawAllSlides(data, widgetId) {
     globalSwiper[widgetId].removeAllSlides();
 
-    _.forEach(data, function(item) {
+    FlipletSliderUtils.forEach(data, function(item) {
       globalSwiper[widgetId].appendSlide('<div class="swiper-slide" data-slider-id="' + item.id + '"></div>');
     });
   }
 
   // Cheking if user changed array order in interface
   function hasArrayChangedOrder(domArray, newArray) {
-    return _.some(domArray, function(element, index) {
+    return FlipletSliderUtils.some(domArray, function(element, index) {
       return element.dataset.sliderId !== newArray[index].id;
     });
   }
@@ -28,8 +28,8 @@
 
     function authenticateImages(onImageLoad) {
       return Fliplet().then(function() {
-        _.forEach(data.items, function(item) {
-          if (!_.get(item, 'imageConf.url') || !Fliplet.Media.isRemoteUrl(item.imageConf.url)) {
+        FlipletSliderUtils.forEach(data.items, function(item) {
+          if (!FlipletSliderUtils.get(item, 'imageConf.url') || !Fliplet.Media.isRemoteUrl(item.imageConf.url)) {
             return;
           }
 
@@ -68,7 +68,7 @@
           var slidersContext = existingPageContext.sliders || {};
 
           slidersContext[id] = swiper.activeIndex;
-          Fliplet.Page.Context.set(_.assign(existingPageContext, slidersContext));
+          Fliplet.Page.Context.set(FlipletSliderUtils.assign(existingPageContext, slidersContext));
         }
       });
 
@@ -93,7 +93,7 @@
       });
 
       $container.find('.ob-skip span').click(function() {
-        if (_.get(data, 'skipLinkAction') && !_.isEmpty(data.skipLinkAction)) {
+        if (FlipletSliderUtils.get(data, 'skipLinkAction') && !FlipletSliderUtils.isEmpty(data.skipLinkAction)) {
           Fliplet.Navigate.to(data.skipLinkAction);
         }
       });
@@ -101,9 +101,9 @@
       $container.find('.btn[data-slide-button-id]').click(function(event) {
         event.preventDefault();
 
-        var itemData = _.find(data.items, { id: $(this).data('slide-button-id') });
+        var itemData = FlipletSliderUtils.find(data.items, { id: $(this).data('slide-button-id') });
 
-        if (_.get(itemData, 'linkAction') && !_.isEmpty(itemData.linkAction)) {
+        if (FlipletSliderUtils.get(itemData, 'linkAction') && !FlipletSliderUtils.isEmpty(itemData.linkAction)) {
           Fliplet.Navigate.to(itemData.linkAction);
         }
       });
@@ -152,7 +152,7 @@
         }
       }
 
-      _.forEach(data, function(item) {
+      FlipletSliderUtils.forEach(data, function(item) {
         var newTemplate = slideTemplate(item);
 
         $('[data-slider-id=' + item.id + ']').html(newTemplate);
@@ -180,7 +180,7 @@
       }
     }
 
-    var debounceLoad = _.debounce(init, 500);
+    var debounceLoad = FlipletSliderUtils.debounce(init, 500);
 
     Fliplet.Studio.onEvent(function(event) {
       var eventDetail = event.detail;
