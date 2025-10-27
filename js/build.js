@@ -92,19 +92,35 @@
         }
       });
 
-      $container.find('.ob-skip span').click(function() {
+      $container.find('.ob-skip span').click(async function() {
         if (FlipletSliderUtils.get(data, 'skipLinkAction') && !FlipletSliderUtils.isEmpty(data.skipLinkAction)) {
-          Fliplet.Navigate.to(data.skipLinkAction);
+          let action = data.skipLinkAction || {};
+
+          try {
+            action.dynamicContext = await Fliplet.Widget.getDynamicContext($(this));
+          } catch (error) {
+            action.dynamicContext = {};
+          }
+
+          Fliplet.Navigate.to(action);
         }
       });
 
-      $container.find('.btn[data-slide-button-id]').click(function(event) {
+      $container.find('.btn[data-slide-button-id]').click(async function(event) {
         event.preventDefault();
 
         var itemData = FlipletSliderUtils.find(data.items, { id: $(this).data('slide-button-id') });
 
         if (FlipletSliderUtils.get(itemData, 'linkAction') && !FlipletSliderUtils.isEmpty(itemData.linkAction)) {
-          Fliplet.Navigate.to(itemData.linkAction);
+          let action = itemData.linkAction || {};
+
+          try {
+            action.dynamicContext = await Fliplet.Widget.getDynamicContext($(this));
+          } catch (error) {
+            action.dynamicContext = {};
+          }
+
+          Fliplet.Navigate.to(action);
         }
       });
     }
