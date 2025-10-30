@@ -46,7 +46,7 @@ var FlSlider = (function() {
   function FlSlider(data) {
     _this = this;
 
-    if (_.isObject(data.skipLinkAction)) {
+    if (FlipletSliderUtils.isObject(data.skipLinkAction)) {
       this.initSkipLinkProvider();
     }
 
@@ -87,7 +87,7 @@ var FlSlider = (function() {
           var sortedIds = $('.panel-group').sortable('toArray', {
             attribute: 'data-id'
           });
-          data.items = _.sortBy(data.items, function(item) {
+          data.items = FlipletSliderUtils.sortBy(data.items, function(item) {
             return sortedIds.indexOf(item.id);
           });
 
@@ -174,7 +174,7 @@ var FlSlider = (function() {
       item.linkAction.provId = item.id;
       item.linkAction.omitPages = omitPages;
 
-      var itemIndex = _.findIndex(data.items, ['id', item.id]);
+      var itemIndex = FlipletSliderUtils.findIndex(data.items, ['id', item.id]);
       var linkActionProvider = Fliplet.Widget.open('com.fliplet.link', {
         // If provided, the iframe will be appended here,
         // otherwise will be displayed as a full-size iframe overlay
@@ -189,7 +189,7 @@ var FlSlider = (function() {
           } else if (event === 'widget-changed') {
             linkSavedFromListener = true;
             if (!linkPromises[itemIndex] || linkPromises[itemIndex].id !== item.id) {
-              var linkItemIndex = _.findIndex(linkPromises, ['id', item.id]);
+              var linkItemIndex = FlipletSliderUtils.findIndex(linkPromises, ['id', item.id]);
               linkPromises[linkItemIndex].forwardSaveRequest();
             } else {
               linkPromises[itemIndex].forwardSaveRequest();
@@ -277,7 +277,7 @@ var FlSlider = (function() {
           Fliplet.Widget.toggleSaveButton(true);
           imageProvider.close();
 
-          if (_.isEmpty(item.imageConf)) {
+          if (FlipletSliderUtils.isEmpty(item.imageConf)) {
             $('[data-id="' + item.id + '"] .add-image-holder').find('.add-image').text('Add image');
             $('[data-id="' + item.id + '"] .add-image-holder').find('.thumb-holder').addClass('hidden');
           }
@@ -291,7 +291,7 @@ var FlSlider = (function() {
         text: 'Select & Save'
       });
 
-      var editIndex = _.findIndex(data.items, ['id', item.id]);
+      var editIndex = FlipletSliderUtils.findIndex(data.items, ['id', item.id]);
 
       imageProvider.then(function(data) {
         if (data.data) {
@@ -346,10 +346,10 @@ var FlSlider = (function() {
           var $item = $(this).closest('[data-id], .panel');
           var id = $item.data('id');
 
-          _.remove(data.items, {
+          FlipletSliderUtils.remove(data.items, {
             id: id
           });
-          _.remove(linkPromises, {
+          FlipletSliderUtils.remove(linkPromises, {
             id: id
           });
 
@@ -361,7 +361,7 @@ var FlSlider = (function() {
         .on('click', '.add-image', function() {
           var $item = $(this).closest('[data-id], .panel');
           var id = $item.data('id');
-          var item = _.find(data.items, {
+          var item = FlipletSliderUtils.find(data.items, {
             id: id
           });
 
@@ -375,7 +375,7 @@ var FlSlider = (function() {
         .on('click', '.image-remove', function() {
           var $item = $(this).closest('[data-id], .panel');
           var id = $item.data('id');
-          var item = _.find(data.items, {
+          var item = FlipletSliderUtils.find(data.items, {
             id: id
           });
 
@@ -436,10 +436,10 @@ var FlSlider = (function() {
         .on('show.bs.collapse', '.panel-collapse', function() {
           // Get item ID / Get provider / Get item
           var itemID = $(this).parents('.panel').data('id');
-          var itemProvider = _.find(linkPromises, function(provider) {
+          var itemProvider = FlipletSliderUtils.find(linkPromises, function(provider) {
             return provider.id === itemID;
           });
-          var item = _.find(data.items, function(item) {
+          var item = FlipletSliderUtils.find(data.items, function(item) {
             return item.id === itemID;
           });
           // Init the link provider when the accordion opens
@@ -496,7 +496,7 @@ Fliplet.Widget.onSaveRequest(function() {
 });
 
 function save(editIndex, notifyComplete) {
-  _.forEach(data.items, function(item) {
+  FlipletSliderUtils.forEach(data.items, function(item) {
     item.description = $('#list-item-desc-' + item.id).val();
     item.title = $('#list-item-title-' + item.id).val();
     item.linkLabel = $('#list-item-link-label-' + item.id).val();

@@ -16,10 +16,10 @@
       "fliplet-studio-ui",
       "jquery-ui",
       "bootstrap",
-      "handlebars",
-      "lodash"
+      "handlebars"
     ],
     "assets": [
+      "js/utils.js",
       "js/swiper.min.js",
       "js/interface.js",
       "css/swiper.min.css",
@@ -31,10 +31,10 @@
       "fliplet-core",
       "bootstrap-css",
       "font-awesome",
-      "handlebars",
-      "lodash"
+      "handlebars"
     ],
     "assets": [
+      "js/utils.js",
       "js/swiper.min.js",
       "js/build.templates.js",
       "js/build.js",
